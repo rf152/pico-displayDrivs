@@ -1,6 +1,10 @@
 #ifndef gfx_H
 #define gfx_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "pico/stdlib.h"
 #include "gfxfont.h"
 
@@ -41,4 +45,8 @@ void GFX_scrollUp(int n);
 uint GFX_getWidth();
 uint GFX_getHeight();
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif //gfx_H

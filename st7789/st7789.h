@@ -1,5 +1,10 @@
 #ifndef ST7789_H
 #define ST7789_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
 
@@ -64,4 +69,8 @@ void LCD_setRotation(uint8_t m);
 void LCD_WritePixel(int x, int y, uint16_t col);
 void LCD_WriteBitmap(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t *bitmap);
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif //ST7789_H

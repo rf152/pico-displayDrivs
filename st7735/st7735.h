@@ -3,6 +3,10 @@
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // Pins
 #define ST7735_CS PICO_DEFAULT_SPI_CSN_PIN
 #define ST7735_RST 16
@@ -106,4 +110,9 @@ void LCD_setRotation(uint8_t m);
 
 void LCD_WriteBitmap(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t *bitmap);
 void LCD_WritePixel(int x, int y, uint16_t col);
+
+#ifdef __cplusplus
+}
 #endif
+
+#endif //ST7735_H
