@@ -1,5 +1,10 @@
 #ifndef ILI9341_H
 #define ILI9341_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
 
@@ -97,4 +102,8 @@ void LCD_setResolution(uint16_t width, uint16_t height);
 void LCD_WritePixel(int x, int y, uint16_t col);
 void LCD_WriteBitmap(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t *bitmap);
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif //ILI9341_H
