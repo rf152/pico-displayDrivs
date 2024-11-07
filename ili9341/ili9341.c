@@ -7,6 +7,9 @@
 uint16_t _width;  ///< Display width as modified by current rotation
 uint16_t _height; ///< Display height as modified by current rotation
 
+uint16_t _setWidth = ILI9341_TFTWIDTH;  ///< Display width as set by LCD setResolution
+uint16_t _setHeight = ILI9341_TFTHEIGHT; ///< Display height as set by LCD setResolution
+
 int16_t _xstart = 0; ///< Internal framebuffer X offset
 int16_t _ystart = 0; ///< Internal framebuffer Y offset
 
@@ -199,6 +202,12 @@ void LCD_initDisplay()
 	_height = ILI9341_TFTHEIGHT;
 }
 
+void LCD_setResolution(uint16_t width, uint16_t height)
+{
+	_setWidth = width;
+	_setHeight = height;
+}
+
 void LCD_setRotation(uint8_t m)
 {
 	rotation = m % 4; // can't be higher than 3
@@ -206,23 +215,23 @@ void LCD_setRotation(uint8_t m)
 	{
 	case 0:
 		m = (MADCTL_MX | MADCTL_BGR);
-		_width = ILI9341_TFTWIDTH;
-		_height = ILI9341_TFTHEIGHT;
+		_width = _setWidth;
+		_height = _setHeight;
 		break;
 	case 1:
 		m = (MADCTL_MV | MADCTL_BGR);
-		_width = ILI9341_TFTHEIGHT;
-		_height = ILI9341_TFTWIDTH;
+		_width = _setHeight;
+		_height = _setWidth;
 		break;
 	case 2:
 		m = (MADCTL_MY | MADCTL_BGR);
-		_width = ILI9341_TFTWIDTH;
-		_height = ILI9341_TFTHEIGHT;
+		_width = _setWidth;
+		_height = _setHeight;
 		break;
 	case 3:
 		m = (MADCTL_MX | MADCTL_MY | MADCTL_MV | MADCTL_BGR);
-		_width = ILI9341_TFTHEIGHT;
-		_height = ILI9341_TFTWIDTH;
+		_width = _setHeight;
+		_height = _setWidth;
 		break;
 	}
 
