@@ -13,6 +13,7 @@ int16_t _ystart = 0; ///< Internal framebuffer Y offset
 uint8_t rotation;
 
 spi_inst_t *ili9341_spi = spi_default;
+uint ili9341_spiSpeed = 1000 * 40000;
 
 uint16_t ili9341_pinCS = PICO_DEFAULT_SPI_CSN_PIN;
 uint16_t ili9341_pinDC = 20;
@@ -73,10 +74,14 @@ void LCD_setSPIperiph(spi_inst_t *s)
 {
 	ili9341_spi = s;
 }
+void LCD_setSPIspeed(uint speed)
+{
+	ili9341_spiSpeed = speed;
+}
 
 void initSPI()
 {
-	spi_init(ili9341_spi, 1000 * 40000);
+	spi_init(ili9341_spi, ili9341_spiSpeed);
 	spi_set_format(ili9341_spi, 16, SPI_CPOL_1, SPI_CPOL_1, SPI_MSB_FIRST);
 	gpio_set_function(ili9341_pinSCK, GPIO_FUNC_SPI);
 	gpio_set_function(ili9341_pinTX, GPIO_FUNC_SPI);

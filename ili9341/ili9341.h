@@ -88,6 +88,7 @@
 
 void LCD_setPins(uint16_t dc, uint16_t cs, int16_t rst, uint16_t sck, uint16_t tx);
 void LCD_setSPIperiph(spi_inst_t *s);
+void LCD_setSPIspeed(uint speed);
 void LCD_initDisplay();
 
 void LCD_setRotation(uint8_t m);
